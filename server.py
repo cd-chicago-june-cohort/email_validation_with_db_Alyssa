@@ -39,8 +39,16 @@ def validation():
 
 @app.route('/success')
 def successful_validation():
-    query = 'select email_address, created_at from email_addresses'
+    query = 'select id, email_address, created_at from email_addresses'
     emails = mysql.query_db(query)
     return render_template('success.html', emails = emails)
+
+@app.route('/delete/<id>')
+def delete(id):
+    query = 'DELETE FROM email_addresses WHERE id=:id'
+    data = {'id': id}
+    mysql.query_db(query, data)
+    return redirect ('/success')
+
 
 app.run(debug=True)

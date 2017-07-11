@@ -10,12 +10,12 @@
     {% with messages = get_flashed_messages() %} 
         {% if messages %} 
             {% for message in messages %}
-                <p class='red'>{{message}}</p>
+                <p>{{message}}</p>
             {% endfor %} 
         {% endif %} 
     {% endwith %}
     {% for email in emails %}
-        <p>{{email.email_address}}  {{email.created_at}}</p>
+        <p>{{email.email_address}}  {{email.created_at}} <a href="/delete/{{email.id}}">Delete?</a></p>
     {% endfor %}
 </body>
 </html>
